@@ -14,3 +14,27 @@
       <p>Текст</p>
   </li>
 */
+
+import { refs } from "./js/refs";
+import { addTasks, clearTaskList}
+
+refs.form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const inputTitle = event.target.elements.taskName.value.trim();
+  const inputDescription = event.target.elements.taskDescription.value.trim();
+  
+  
+  if (inputTitle === '' || inputDescription === '') {
+        alert('fill in all gields');
+        return;
+  }
+  const task = {
+    title: inputTitle,
+    text: inputDescription,
+  }
+  console.log(task);  
+
+
+
+})
