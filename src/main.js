@@ -16,7 +16,7 @@
 */
 
 import { refs } from "./js/refs";
-import { addTasks, clearTaskList}
+
 
 refs.form.addEventListener("submit", (event) => {
   event.preventDefault();

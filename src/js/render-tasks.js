@@ -12,6 +12,3 @@ const addTask = (task) => {
     
 } 
 
-export const = 
-
-const clearTaskList.innerHTML()
