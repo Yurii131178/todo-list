@@ -13,28 +13,31 @@
       <h3>Заголовок</h3>
       <p>Текст</p>
   </li>
-*/
+*/  
+ import { refs } from "./js/refs"; 
+import { addTask, clearTaskList, deleteTask, renderTasks } from "./js/render-tasks";
 
-import { refs } from "./js/refs";
-
-
+renderTasks();  
 refs.form.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  const inputTitle = event.target.elements.taskName.value.trim();
+  const inputTitles = event.target.elements.taskName.value.trim();
   const inputDescription = event.target.elements.taskDescription.value.trim();
-  
-  
-  if (inputTitle === '' || inputDescription === '') {
-        alert('fill in all gields');
-        return;
-  }
-  const task = {
-    title: inputTitle,
+   if (inputTitles === '' || inputDescription === '') {
+    alert('fill in all fields');
+    return;
+  }; 
+ const task = {
+    title: inputTitles,
     text: inputDescription,
   }
-  console.log(task);  
-
-
-
+  addTask(task)
+  refs.form.reset(); 
+});
+refs.tasksList.addEventListener("click", event => {
+  if(!event.target.classList.contains("task-list-item-btn")) {
+    return
+  }
+const title = event.target.nextElementSibling.textContent;
+deleteTask(title);
 })
+ 

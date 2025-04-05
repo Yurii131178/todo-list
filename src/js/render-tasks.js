@@ -1,14 +1,22 @@
-import { refs } from "./refs";
-import { createMarkup } from "./markup-tasks";
-    import { createMarkup } from "./markup-tasks";
+import { refs } from './refs';
+import { createMarkup } from './markup-tasks';
+import { getTasks, saveTasks } from './local-storage-api';
 
-const tasks = {};
-
-
-const addTask = (task) => {
-    tasks.push(task);
-    
-    refs.tasksList.insertAdjacentElement("beforeend", createMarkup(tasks))
-    
+let tasks = getTasks("tasks");
+export const addTask = (task) => {
+  tasks.push(task);
+  renderTasks();
+  saveTasks("tasks", tasks);  
+}
+export const clearTaskList = () => {
+    refs.tasksList.innerHTML = "";
+}
+export const renderTasks = () => {
+    refs.tasksList.innerHTML = createMarkup(tasks);
+}
+export const deleteTask = (title) => {
+    tasks = tasks.filter(task => task.title !== title);
+    renderTasks();
+    saveTasks("tasks", tasks);
 } 
 
